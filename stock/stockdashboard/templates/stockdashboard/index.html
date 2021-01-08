@@ -1,0 +1,13 @@
+<h1>Welcome to stock stockdashboard</h1>
+<h3>Pick your stock below</h3>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'stock_dashboard:detail'%}" method="post">
+{% csrf_token %}
+{% for stock in stocks%}
+    <input type="radio" name="stock" id="stock{{ forloop.counter }}" value="{{ stock.stock_name }}">
+    <label for="stock{{ forloop.counter }}">{{ stock.stock_name }}</label><br>
+{% endfor %}
+<input type="submit" value="Submit">
+</form>
